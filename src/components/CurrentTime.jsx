@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { formatTime } from '../utils/formatTime.js';
+
 
 class CurrentTime extends React.Component {
   constructor(props) {
@@ -9,30 +11,16 @@ class CurrentTime extends React.Component {
 
     this.state = {
       currentTime: time,
-      formattedTime: this._formatTime(time),
+      formattedTime: formatTime(time),
       intervalId: null,
     };
 
     this.updateTime = this.updateTime.bind(this);
   }
 
-  _formatTime(time) {
-    // TODO - Move to a utils folder for reuse
-    return time.toLocaleString(
-      'en-US',
-      {
-          hour: 'numeric',
-          minute: 'numeric',
-          hour12: true,
-          // Since we're always concerned with Boston we know the timezone
-          timeZone: 'America/New_York',
-      }
-    );
-  }
-
   updateTime() {
     this.setState({
-      formattedTime: this._formatTime(new Date()),
+      formattedTime: formatTime(new Date()),
     });
   }
 

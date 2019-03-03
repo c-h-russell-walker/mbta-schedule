@@ -9,13 +9,18 @@ import TrackNumber from './TrackNumber.jsx';
 
 class ScheduleRow extends React.Component {
   render() {
+    const {
+      departure_time,
+      status,
+      track, // TODO - Make sure we're getting track on attributes
+    } = this.props.pred.attributes;
     return (
       <tr>
         <StationName />
-        <DepartureTime />
+        <DepartureTime  departureTime={departure_time}/>
         <Destination />
-        <TrackNumber />
-        <Status />
+        <TrackNumber track={track} />
+        <Status status={status} />
       </tr>
     );
   }

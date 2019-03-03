@@ -62,8 +62,10 @@ class DeparturesTable extends React.Component {
   }
 
   resetEvent(evt) {
-    console.log('resetEvent !!');
-    console.log(evt);
+    const data = JSON.parse(evt.data);
+    this.setState({
+      predictions: data.filter(d => d.type === 'prediction'),
+    });
   }
 
   addEvent(evt) {
@@ -98,7 +100,7 @@ class DeparturesTable extends React.Component {
         </thead>
         <tbody>
           {
-            this.state.predictions.map((pred, idx) => <ScheduleRow key={idx} />)
+            this.state.predictions.map((pred, idx) => <ScheduleRow key={idx} pred={pred} />)
           }
         </tbody>
       </table>
