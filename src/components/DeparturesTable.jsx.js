@@ -25,10 +25,17 @@ class DeparturesTable extends React.Component {
     this.updateEvent = this.updateEvent.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
 
+    this._removePredById = this._removePredById.bind(this);
     this._getAndStoreStationName = this._getAndStoreStationName.bind(this);
     this._getAndStoreRouteDestination = this._getAndStoreRouteDestination.bind(this);
 
     this._setupEventSource();
+  }
+
+  _removePredById(predId) {
+    this.setState({
+      predictions: this.state.predictions.filter(p => p.id !== predId),
+    });
   }
 
   _setupEventSource() {
@@ -137,8 +144,8 @@ class DeparturesTable extends React.Component {
   }
 
   removeEvent(evt) {
-    console.log('removeEvent !!');
-    console.log(evt);
+    const data = JSON.parse(evt.data)
+    this._removePredById(data.id);
   }
 
   render() {
