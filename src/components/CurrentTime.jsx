@@ -17,6 +17,7 @@ class CurrentTime extends React.Component {
   }
 
   _formatTime(time) {
+    // TODO - Move to a utils folder for reuse
     return time.toLocaleString(
       'en-US',
       {
