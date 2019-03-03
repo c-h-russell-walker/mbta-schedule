@@ -134,8 +134,14 @@ class DeparturesTable extends React.Component {
   }
 
   addEvent(evt) {
-    console.log('addEvent !!');
-    console.log(evt);
+    const data = JSON.parse(evt.data)
+    // TODO - Confirm assumption that we'll only add non "Departed" statuses
+    if (data.type === 'prediction' && data.attributes.status !== 'Departed') {
+      this.setState({
+        // TODO - We should double check that the results are still sorted by departure time
+        predictions: [...this.state.predictions, data],
+      });
+    }
   }
 
   updateEvent(evt) {
