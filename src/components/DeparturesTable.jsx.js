@@ -7,11 +7,13 @@ class DeparturesTable extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO - Set API_KEY as Env. Var.
-
     this.state = {
       predictions: [],
+      stationIdsToNames: {}
     };
+
+    this.baseUrl = 'https://api-v3.mbta.com/';
+    this.apiKey = process.env.REACT_APP_MBTA_KEY;
 
     this.eventSourceOnMessage = this.eventSourceOnMessage.bind(this);
     this.eventSourceOnError = this.eventSourceOnError.bind(this);
@@ -22,17 +24,16 @@ class DeparturesTable extends React.Component {
     this.updateEvent = this.updateEvent.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
 
+    this._getAndStoreStationName = this._getAndStoreStationName.bind(this);
+
     this._setupEventSource();
   }
 
   _setupEventSource() {
-    const baseUrl = 'https://api-v3.mbta.com/';
-    const apiKey = process.env.REACT_APP_MBTA_KEY;
-
     // TODO - Use url parsing in JS
     // TODO - Set these up to be props and/or configurable
 
-    const mbtaEventSourceUrl = `${baseUrl}predictions/?api_key=${apiKey}&filter[stop]=place-north,place-sstat&filter[route_type]=2&filter[direction_id]=0&sort=departure_time&include=schedule,trip.direction_id,route.type`;
+    const mbtaEventSourceUrl = `${this.baseUrl}predictions/?api_key=${this.apiKey}&filter[stop]=place-north,place-sstat&filter[route_type]=2&filter[direction_id]=0&sort=departure_time&include=schedule,trip.direction_id,route.type`;
 
     const evtSource = new EventSource(mbtaEventSourceUrl);
 
@@ -63,8 +64,36 @@ class DeparturesTable extends React.Component {
 
   resetEvent(evt) {
     const data = JSON.parse(evt.data);
+    const predictions = data.filter(d => d.type === 'prediction');
     this.setState({
-      predictions: data.filter(d => d.type === 'prediction'),
+      predictions: predictions,
+    });
+
+    // Get Station names from ids
+    const relationships = predictions.map(pred => pred.relationships);
+    const stationIds = new Set(relationships.map(rel => rel.stop.data.id));
+    stationIds.forEach(stationId => {
+      this._getAndStoreStationName(stationId);
+    });
+  }
+
+  _getAndStoreStationName(stationId) {
+    fetch(`${this.baseUrl}stops/${stationId}`).then(resp => {
+      return resp.json();
+    }).then(jsonData => {
+      let callSetState = false;
+      const stationData = jsonData.data;
+      const stationDataId = stationData.id;
+      const stationIdsToNamesCopy = this.state.stationIdsToNames;
+      if (!Object.keys(this.state.stationIdsToNames).includes(stationDataId)) {
+        stationIdsToNamesCopy[stationDataId] = stationData.attributes.name
+        callSetState = true;
+      }
+      if (callSetState) {
+        this.setState({
+          stationIdsToNames: stationIdsToNamesCopy,
+        })
+      }
     });
   }
 
@@ -100,7 +129,17 @@ class DeparturesTable extends React.Component {
         </thead>
         <tbody>
           {
-            this.state.predictions.map((pred, idx) => <ScheduleRow key={idx} pred={pred} />)
+            this.state.predictions.map(
+              (pred, idx) => {
+                return (
+                  <ScheduleRow
+                    key={idx}
+                    pred={pred}
+                    stationIdsToNames={this.state.stationIdsToNames}
+                  />
+                );
+              }
+            )
           }
         </tbody>
       </table>
