@@ -187,11 +187,8 @@ class DeparturesTable extends React.Component {
   }
 
   render() {
-
-    // TODO - Style this
-
     return (
-      <table cellPadding="10">
+      <table cellPadding='10'>
         <thead>
           <tr>
             <th>Station</th>
