@@ -67,8 +67,6 @@ class DeparturesTable extends React.Component {
   }
 
   eventSourceOnOpen(evt) {
-    console.log('onopen');
-    console.log(evt);
   }
 
   resetEvent(evt) {
@@ -88,7 +86,7 @@ class DeparturesTable extends React.Component {
     // Get destinations from routes via their ids
     const routeIds = new Set(predictions.map(p => p.relationships.route.data.id));
     routeIds.forEach(routeId => {
-        this._getAndStoreRouteDestination(routeId);
+      this._getAndStoreRouteDestination(routeId);
     });
   }
 
@@ -135,11 +133,33 @@ class DeparturesTable extends React.Component {
 
   addEvent(evt) {
     const data = JSON.parse(evt.data)
+
     // TODO - Confirm assumption that we'll only add non "Departed" statuses
     if (data.type === 'prediction' && data.attributes.status !== 'Departed') {
+
+      const currentRouteId = data.relationships.route.data.id;
+      if (!Object.keys(this.state.routeDestinations).includes(currentRouteId)) {
+        this._getAndStoreRouteDestination(currentRouteId);
+      }
+
+      const currentStationId = data.relationships.stop.data.id;
+      if (!Object.keys(this.state.stationIdsToNames).includes(currentStationId)) {
+        this._getAndStoreStationName(currentStationId);
+      }
+
+      // Default to putting prediction at the start of the list
+      let insertionIndex = 0;
+      this.state.predictions.forEach((pred, index) => {
+        if (pred.attributes.departure_time < data.attributes.departure_time) {
+          insertionIndex = index;
+        }
+      });
       this.setState({
-        // TODO - We should double check that the results are still sorted by departure time
-        predictions: [...this.state.predictions, data],
+        predictions: [
+          ...this.state.predictions.slice(0, insertionIndex),
+          data,
+          ...this.state.predictions.slice(insertionIndex + 1, this.state.predictions.length),
+        ],
       });
     }
   }
