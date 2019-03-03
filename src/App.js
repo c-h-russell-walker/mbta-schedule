@@ -12,6 +12,9 @@ class App extends Component {
         <header className='App-header'>
           <ScheduleBoard />
         </header>
+        <div>
+          <p>Source code found <a rel="noopener noreferrer" target="_blank" href="https://github.com/c-h-russell-walker/mbta-schedule">here</a>.</p>
+        </div>
       </div>
     );
   }
