@@ -139,7 +139,7 @@ class DeparturesTable extends React.Component {
   }
 
   addEvent(evt) {
-    const data = JSON.parse(evt.data)
+    const data = JSON.parse(evt.data);
 
     // TODO - Confirm assumption that we'll only add non "Departed" statuses
     if (data.type === 'prediction' && data.attributes.status !== 'Departed') {
@@ -172,12 +172,17 @@ class DeparturesTable extends React.Component {
   }
 
   updateEvent(evt) {
-    console.log('updateEvent !!');
-    console.log(evt);
+    const data = JSON.parse(evt.data);
+    let predictionsCopy = this.state.predictions.slice();
+    const insertionIndex = this.state.predictions.findIndex(p => p.id === data.id);
+    predictionsCopy.splice(insertionIndex, 1, data);
+    this.setState({
+      predictions: predictionsCopy,
+    });
   }
 
   removeEvent(evt) {
-    const data = JSON.parse(evt.data)
+    const data = JSON.parse(evt.data);
     this._removePredById(data.id);
   }
 
