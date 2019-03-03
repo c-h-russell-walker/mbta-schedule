@@ -3,7 +3,17 @@ React App for displaying realtime MBTA schedules
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Currently deployed here:
+## Useful MBTA links:
+
+[https://www.mbta.com/developers](https://www.mbta.com/developers)
+
+[Developer Portal](https://api-v3.mbta.com/portal)
+
+[V3 API Swagger Documentation](https://api-v3.mbta.com/docs/swagger/index.html)
+
+[Google Groups Forum](https://groups.google.com/forum/#!forum/massdotdevelopers)
+
+## Currently deployed via heroku here:
 
 [MBTA Schedule App](https://crw-mbta-schedule.herokuapp.com/)
 
