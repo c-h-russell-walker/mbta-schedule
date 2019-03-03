@@ -9,7 +9,8 @@ class DeparturesTable extends React.Component {
 
     this.state = {
       predictions: [],
-      stationIdsToNames: {}
+      stationIdsToNames: {},
+      routeDestinations: {},
     };
 
     this.baseUrl = 'https://api-v3.mbta.com/';
@@ -25,6 +26,7 @@ class DeparturesTable extends React.Component {
     this.removeEvent = this.removeEvent.bind(this);
 
     this._getAndStoreStationName = this._getAndStoreStationName.bind(this);
+    this._getAndStoreRouteDestination = this._getAndStoreRouteDestination.bind(this);
 
     this._setupEventSource();
   }
@@ -75,6 +77,12 @@ class DeparturesTable extends React.Component {
     stationIds.forEach(stationId => {
       this._getAndStoreStationName(stationId);
     });
+
+    // Get destinations from routes via their ids
+    const routeIds = new Set(predictions.map(p => p.relationships.route.data.id));
+    routeIds.forEach(routeId => {
+        this._getAndStoreRouteDestination(routeId);
+    });
   }
 
   _getAndStoreStationName(stationId) {
@@ -86,13 +94,34 @@ class DeparturesTable extends React.Component {
       const stationDataId = stationData.id;
       const stationIdsToNamesCopy = this.state.stationIdsToNames;
       if (!Object.keys(this.state.stationIdsToNames).includes(stationDataId)) {
-        stationIdsToNamesCopy[stationDataId] = stationData.attributes.name
+        stationIdsToNamesCopy[stationDataId] = stationData.attributes.name;
         callSetState = true;
       }
       if (callSetState) {
         this.setState({
           stationIdsToNames: stationIdsToNamesCopy,
-        })
+        });
+      }
+    });
+  }
+
+  _getAndStoreRouteDestination(routeId) {
+    fetch(`${this.baseUrl}routes/${routeId}`).then(resp => {
+      return resp.json();
+    }).then(jsonData => {
+      let callSetState = false;
+      const routeData = jsonData.data;
+      // TODO - Can we assume we can always use first value in array?
+      const destination = routeData.attributes.direction_destinations[0];
+      const routeDestinationsCopy = this.state.routeDestinations;
+      if (!Object.keys(this.state.routeDestinations).includes(routeId)) {
+        routeDestinationsCopy[routeId] = destination;
+        callSetState = true;
+      }
+      if (callSetState) {
+        this.setState({
+          routeDestinations: routeDestinationsCopy,
+        });
       }
     });
   }
@@ -136,6 +165,7 @@ class DeparturesTable extends React.Component {
                     key={idx}
                     pred={pred}
                     stationIdsToNames={this.state.stationIdsToNames}
+                    routeDestinations={this.state.routeDestinations}
                   />
                 );
               }

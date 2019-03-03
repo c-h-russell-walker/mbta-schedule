@@ -13,15 +13,17 @@ class ScheduleRow extends React.Component {
     const {
       departure_time,
       status,
-      track, // TODO - Make sure we're getting track on attributes
+      track,
     } = prediction.attributes;
 
     const stationId = prediction.relationships.stop.data.id;
+    const routeId = prediction.relationships.route.data.id;
+
     return (
       <tr>
         <StationName stationId={stationId} stationIdsToNames={this.props.stationIdsToNames} />
-        <DepartureTime  departureTime={departure_time}/>
-        <Destination />
+        <DepartureTime departureTime={departure_time}/>
+        <Destination routeId={routeId} routeDestinations={this.props.routeDestinations} />
         <TrackNumber track={track} />
         <Status status={status} />
       </tr>
