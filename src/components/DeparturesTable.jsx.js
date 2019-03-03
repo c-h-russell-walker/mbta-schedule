@@ -29,7 +29,7 @@ class DeparturesTable extends React.Component {
     this._getAndStoreStationName = this._getAndStoreStationName.bind(this);
     this._getAndStoreRouteDestination = this._getAndStoreRouteDestination.bind(this);
 
-    this._setupEventSource();
+    this.evtSource = this._setupEventSource();
   }
 
   _removePredById(predId) {
@@ -54,6 +54,8 @@ class DeparturesTable extends React.Component {
     evtSource.addEventListener('add', this.addEvent, false);
     evtSource.addEventListener('update', this.updateEvent, false);
     evtSource.addEventListener('remove', this.removeEvent, false);
+
+    return evtSource;
   }
 
   eventSourceOnMessage(evt) {
@@ -64,6 +66,11 @@ class DeparturesTable extends React.Component {
   eventSourceOnError(evt) {
     console.log('onerror');
     console.log(evt);
+    this.setState({
+      predictions: [],
+    }, () => {
+      this.evtSource = this._setupEventSource();
+    });
   }
 
   eventSourceOnOpen(evt) {
