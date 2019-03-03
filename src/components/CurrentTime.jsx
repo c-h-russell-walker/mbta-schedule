@@ -31,7 +31,7 @@ class CurrentTime extends React.Component {
       if (time.getMinutes() !== this.state.currentTime.getMinutes()) {
         this.updateTime();
       }
-    }, 1000); // TODO - Maybe make this configurable (checking every second now)
+    }, this.props.checkInterval || 1000);
 
     this.setState({
       intervalId: intervalId,

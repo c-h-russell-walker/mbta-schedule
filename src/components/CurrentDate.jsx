@@ -5,10 +5,17 @@ class CurrentDate extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO - Make this aware of when to switch over (at midnight)
-
     const time = new Date();
-    let dayOfWeek = time.toLocaleString(
+
+    this.state = {
+      currentDate: time.getDate(),
+      formattedCurrentDate: this._formatCurrentDate(time),
+      intervalId: null,
+    };
+  }
+
+  _formatCurrentDate(time) {
+    let currentDate = time.toLocaleString(
       'en-US',
       {
         // Since we're always concerned with Boston we know the timezone
@@ -20,17 +27,33 @@ class CurrentDate extends React.Component {
     );
 
     // Replacing slashes with hyphens to match image of board at North Station
-    dayOfWeek = dayOfWeek.replace(/\//g, '-');
+    return currentDate.replace(/\//g, '-');
+  }
 
-    this.state = {
-      dayOfWeek: dayOfWeek,
-    };
+  updateDate() {
+    this.setState({
+      formattedCurrentDate: this._formatCurrentDate(new Date()),
+    });
+  }
+
+  componentDidMount() {
+    // Keep track of the setInterval ID so we can clear it later
+    const intervalId = setInterval(() => {
+      const time = new Date();
+      if (time.getDate() !== this.state.currentDate) {
+        this.updateDay();
+      }
+    }, this.props.checkInterval || 1000);
+
+    this.setState({
+      intervalId: intervalId,
+    });
   }
 
   render() {
     return (
       <div style={{ position: 'absolute', marginLeft: '1em', }}>
-        {this.state.dayOfWeek}
+        {this.state.formattedCurrentDate}
       </div>
     );
   }

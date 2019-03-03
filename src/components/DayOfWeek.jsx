@@ -5,10 +5,19 @@ class DayOfWeek extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO - Make this aware of when to switch over (at midnight)
-
     const time = new Date();
-    const dayOfWeek = time.toLocaleString(
+
+    this.state = {
+      currentDate: time.getDate(),
+      dayOfWeek: this._formatDayOfWeek(time),
+      intervalId: null,
+    };
+
+    this.updateDay = this.updateDay.bind(this);
+  }
+
+  _formatDayOfWeek(time) {
+    return time.toLocaleString(
       'en-US',
       {
         // Since we're always concerned with Boston we know the timezone
@@ -16,10 +25,26 @@ class DayOfWeek extends React.Component {
         weekday: 'long',
       }
     );
+  }
 
-    this.state = {
-      dayOfWeek: dayOfWeek,
-    };
+  updateDay() {
+    this.setState({
+      dayOfWeek: this._formatDayOfWeek(new Date()),
+    });
+  }
+
+  componentDidMount() {
+    // Keep track of the setInterval ID so we can clear it later
+    const intervalId = setInterval(() => {
+      const time = new Date();
+      if (time.getDate() !== this.state.currentDate) {
+        this.updateDay();
+      }
+    }, this.props.checkInterval || 1000);
+
+    this.setState({
+      intervalId: intervalId,
+    });
   }
 
   render() {
