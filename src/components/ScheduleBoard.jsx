@@ -13,9 +13,19 @@ class ScheduleBoard extends React.Component {
     return (
       <div>
         <BoardHeader />
-        <DayOfWeek />
-        <CurrentDate />
-        <CurrentTime />
+        <div>
+          <DayOfWeek />
+          <div style={{ float: 'right', marginRight: '1em', }}>
+            Current Time
+          </div>
+        </div>
+        <div style={{ clear: 'both', }}></div>
+        <div>
+          <CurrentDate />
+          <CurrentTime />
+        </div>
+        <div style={{ clear: 'both', }}></div>
+        <hr/>
         <DeparturesTable />
       </div>
     );

@@ -23,9 +23,8 @@ class DayOfWeek extends React.Component {
   }
 
   render() {
-
     return (
-      <div>
+      <div style={{ position: 'absolute', marginLeft: '1em', }}>
         {this.state.dayOfWeek}
       </div>
     );

@@ -45,10 +45,8 @@ class CurrentTime extends React.Component {
   }
 
   render() {
-
     return (
-      <div>
-        <p>Current Time</p>
+      <div style={{ float: 'right', marginRight: '1em', }}>
         {this.state.formattedTime}
       </div>
     );
