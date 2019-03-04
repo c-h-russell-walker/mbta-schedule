@@ -41,7 +41,7 @@ class CurrentDate extends React.Component {
     const intervalId = setInterval(() => {
       const time = new Date();
       if (time.getDate() !== this.state.currentDate) {
-        this.updateDay();
+        this.updateDate();
       }
     }, this.props.checkInterval || 1000);
 
