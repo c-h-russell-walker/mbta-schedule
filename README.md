@@ -5,9 +5,13 @@
 
 [MBTA Schedule App](https://crw-mbta-schedule.herokuapp.com/)
 
+#### Be sure to set your API KEY [(gotten here)](https://api-v3.mbta.com/portal)
+
+Used in the code [here](/src/components/DeparturesTable.jsx#L17)
+
 ---
 
-Current requirements:
+#### Current requirements:
 
 A web application that shows live Commuter Rail departure board:
 
@@ -25,13 +29,19 @@ A web application that shows live Commuter Rail departure board:
 
 ## Notes/comments on assumptions made in code (they link to relevant portion of code):
 
-[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L180-L181)
+[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L178-L179)
 
-[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L199-L200)
+[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L197-L198)
 
 [We're using defaults specific to the requirements but have set up use for props](/src/components/DeparturesTable.jsx#L42-L44)
 
-[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L213-L219)
+[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L211-L217)
+
+[Since this is the MBTA we always know the timezone!](/src/utils/formatTime.js#L9-L10)
+
+[Left a note about possibly making station names header configurable](/src/components/BoardHeader.jsx#L5)
+
+[Replaced slashes with hyphens to match image of board at North Station](/src/components/CurrentDate.jsx#L29-L30)
 
 ---
 

@@ -24,7 +24,7 @@ class ScheduleBoard extends React.Component {
           <CurrentTime />
         </div>
         <div style={{ clear: 'both', }}></div>
-        <hr/>
+        <hr />
         <DeparturesTable />
       </div>
     );

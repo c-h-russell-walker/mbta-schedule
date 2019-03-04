@@ -113,13 +113,10 @@ class DeparturesTable extends React.Component {
   }
 
   eventSourceOnMessage(evt) {
-    console.log('onmessage');
-    console.log(evt);
+    // Not using this event handler currently
   }
 
   eventSourceOnError(evt) {
-    console.log('onerror');
-    console.log(evt);
     this.setState({
       predictions: [],
     }, () => {
@@ -128,6 +125,7 @@ class DeparturesTable extends React.Component {
   }
 
   eventSourceOnOpen(evt) {
+    // Not using this event handler currently
   }
 
   resetEvent(evt) {

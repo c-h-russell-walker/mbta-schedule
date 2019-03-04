@@ -22,7 +22,7 @@ class ScheduleRow extends React.Component {
     return (
       <tr>
         <StationName stationId={stationId} stationIdsToNames={this.props.stationIdsToNames} />
-        <DepartureTime departureTime={departure_time}/>
+        <DepartureTime departureTime={departure_time} />
         <Destination routeId={routeId} routeDestinations={this.props.routeDestinations} />
         <TrackNumber track={track} />
         <Status status={status} />
