@@ -50,7 +50,12 @@ class DeparturesTable extends React.Component {
     urlSearchParams.append('filter[route_type]', COMMUTER_RAIL);
     urlSearchParams.append('filter[direction_id]', DEPARTING_DIRECTION);
     urlSearchParams.append('sort', 'departure_time');
-    urlSearchParams.append('include', 'schedule,trip.direction_id,route.type');
+    let includeValues = [
+      'schedule',
+      'trip.direction_id',
+      'route.type',
+    ];
+    urlSearchParams.append('include', includeValues.join());
 
     const mbtaEventSourceUrl = `${this.baseUrl}predictions/?${urlSearchParams.toString()}`;
 
