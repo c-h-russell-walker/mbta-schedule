@@ -39,10 +39,20 @@ class DeparturesTable extends React.Component {
   }
 
   _setupEventSource() {
-    // TODO - Use url parsing in JS
     // TODO - Set these up to be props and/or configurable
 
-    const mbtaEventSourceUrl = `${this.baseUrl}predictions/?api_key=${this.apiKey}&filter[stop]=place-north,place-sstat&filter[route_type]=2&filter[direction_id]=0&sort=departure_time&include=schedule,trip.direction_id,route.type`;
+    const COMMUTER_RAIL = 2;
+    const DEPARTING_DIRECTION = 0;
+
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('api_key', this.apiKey);
+    urlSearchParams.append('filter[stop]', 'place-north,place-sstat');
+    urlSearchParams.append('filter[route_type]', COMMUTER_RAIL);
+    urlSearchParams.append('filter[direction_id]', DEPARTING_DIRECTION);
+    urlSearchParams.append('sort', 'departure_time');
+    urlSearchParams.append('include', 'schedule,trip.direction_id,route.type');
+
+    const mbtaEventSourceUrl = `${this.baseUrl}predictions/?${urlSearchParams.toString()}`;
 
     const evtSource = new EventSource(mbtaEventSourceUrl);
 
