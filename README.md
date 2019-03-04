@@ -4,10 +4,15 @@ React App for displaying realtime MBTA schedules.
 Current requirements:
 
 A web application that shows live Commuter Rail departure board:
+
 &nbsp;&nbsp;&nbsp;&nbsp;- The application should show the upcoming departures at North and South stations
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the train destinations
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the departure times
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the track numbers
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the boarding status (e.g. 'Boarding', 'All Aboard', 'Delayed')
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
