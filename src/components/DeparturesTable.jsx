@@ -203,14 +203,14 @@ class DeparturesTable extends React.Component {
 
   render() {
     return (
-      <table cellPadding='10'>
+      <table cellPadding='8'>
         <thead>
           <tr>
-            <th>Station</th>
-            <th>Time</th>
-            <th>Destination</th>
-            <th>Track</th>
-            <th>Status</th>
+            <th style={{ borderBottom: '1px solid #FFF', }}>Station</th>
+            <th style={{ borderBottom: '1px solid #FFF', }}>Time</th>
+            <th style={{ borderBottom: '1px solid #FFF', }}>Destination</th>
+            <th style={{ borderBottom: '1px solid #FFF', }}>Track</th>
+            <th style={{ borderBottom: '1px solid #FFF', }}>Status</th>
           </tr>
         </thead>
         <tbody>

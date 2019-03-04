@@ -9,7 +9,6 @@ import DeparturesTable from './DeparturesTable.jsx';
 
 class ScheduleBoard extends React.Component {
   render() {
-    // TODO - Style this
     return (
       <div>
         <BoardHeader />
