@@ -39,22 +39,61 @@ class DeparturesTable extends React.Component {
   }
 
   _setupEventSource() {
-    // TODO - Set these up to be props and/or configurable
+    // The values below are set up with defaults that came from poject requirements
+    // However they've been set up so the values can be passed in to props to the
+    // DeparturesTable component
 
     const COMMUTER_RAIL = 2;
     const DEPARTING_DIRECTION = 0;
 
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('api_key', this.apiKey);
-    urlSearchParams.append('filter[stop]', 'place-north,place-sstat');
-    urlSearchParams.append('filter[route_type]', COMMUTER_RAIL);
-    urlSearchParams.append('filter[direction_id]', DEPARTING_DIRECTION);
-    urlSearchParams.append('sort', 'departure_time');
-    let includeValues = [
-      'schedule',
-      'trip.direction_id',
-      'route.type',
-    ];
+
+    let stops;
+    if (this.props.stops && this.props.stops.length) {
+      stops = this.props.stops;
+    } else {
+      // Default to North and South Station
+      stops = [
+        'place-north',
+        'place-sstat',
+      ];
+    }
+    urlSearchParams.append('filter[stop]', stops.join());
+
+    let routeType;
+    // route_type can be zero
+    if (typeof this.props.routeType === 'undefined') {
+      routeType = COMMUTER_RAIL;
+    } else {
+      routeType = this.props.routeType;
+    }
+    urlSearchParams.append('filter[route_type]', routeType);
+
+    let directionId;
+    // direction_id can be zero
+    if (typeof this.props.directionId === 'undefined') {
+      directionId = DEPARTING_DIRECTION;
+    } else {
+      directionId = this.props.directionId;
+    }
+    urlSearchParams.append('filter[direction_id]', directionId);
+
+    const sort = this.props.sortValue || 'departure_time';
+    urlSearchParams.append('sort', sort);
+
+
+    let includeValues;
+    if (this.props.includeValues && this.props.includeValues.length) {
+      includeValues = this.props.includeValues;
+    } else {
+      // Use defaults
+      includeValues = [
+        'schedule',
+        'trip.direction_id',
+        'route.type',
+      ];
+    }
     urlSearchParams.append('include', includeValues.join());
 
     const mbtaEventSourceUrl = `${this.baseUrl}predictions/?${urlSearchParams.toString()}`;
