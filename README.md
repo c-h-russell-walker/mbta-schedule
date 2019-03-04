@@ -21,13 +21,13 @@ A web application that shows live Commuter Rail departure board:
 
 ## Notes/comments on assumptions made in code:
 
-[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L180-181)
+[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L180-L181)
 
-[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L199-200)
+[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L199-L200)
 
-[We're using defaults specific to the requirements but have set up use for props](/src/components/DeparturesTable.jsx#L42-44)
+[We're using defaults specific to the requirements but have set up use for props](/src/components/DeparturesTable.jsx#L42-L44)
 
-[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L213-219)
+[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L213-L219)
 
 ---
 
