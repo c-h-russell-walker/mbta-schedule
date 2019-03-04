@@ -15,15 +15,17 @@ Used in the code [here](/src/components/DeparturesTable.jsx#L17)
 
 A web application that shows live Commuter Rail departure board:
 
-&nbsp;&nbsp;&nbsp;&nbsp;- The application should show the upcoming departures at North and South stations
+&nbsp;&nbsp;&nbsp;&nbsp;- The application should show the upcoming departures at North and South stations - including:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the train destinations
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The train destinations
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the departure times
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The departure times
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the track numbers
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The track numbers
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the boarding status (e.g. 'Boarding', 'All Aboard', 'Delayed')
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The boarding status (e.g. 'Boarding', 'All Aboard', 'Delayed')
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- I add a column for the name of the station since we're getting data for two stations on one board
 
 ---
 
