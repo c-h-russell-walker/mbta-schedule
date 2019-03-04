@@ -177,7 +177,8 @@ class DeparturesTable extends React.Component {
     }).then(jsonData => {
       let callSetState = false;
       const routeData = jsonData.data;
-      // TODO - Can we assume we can always use first value in array?
+      // I've made the assumption that we can always expect the destination to be the
+      // first value in the array - I'd like to confirm this.
       const destination = routeData.attributes.direction_destinations[0];
       const routeDestinationsCopy = this.state.routeDestinations;
       if (!Object.keys(this.state.routeDestinations).includes(routeId)) {
@@ -195,7 +196,8 @@ class DeparturesTable extends React.Component {
   addEvent(evt) {
     const data = JSON.parse(evt.data);
 
-    // TODO - Confirm assumption that we'll only add non "Departed" statuses
+    // Making an assumption that we should not add to the board when we receive
+    // an event that has status of 'Departed'
     if (data.type === 'prediction' && data.attributes.status !== 'Departed') {
 
       const currentRouteId = data.relationships.route.data.id;
