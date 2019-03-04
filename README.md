@@ -1,6 +1,10 @@
 # MBTA-Schedule Web Application
 ### React App for displaying realtime MBTA schedules.
 
+#### Currently deployed via heroku here:
+
+[MBTA Schedule App](https://crw-mbta-schedule.herokuapp.com/)
+
 ---
 
 Current requirements:
@@ -19,7 +23,7 @@ A web application that shows live Commuter Rail departure board:
 
 ---
 
-## Notes/comments on assumptions made in code:
+## Notes/comments on assumptions made in code (they link to relevant portion of code):
 
 [Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L180-L181)
 
@@ -31,8 +35,6 @@ A web application that shows live Commuter Rail departure board:
 
 ---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Useful MBTA links:
 
 [https://www.mbta.com/developers](https://www.mbta.com/developers)
@@ -43,9 +45,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [Google Groups Forum](https://groups.google.com/forum/#!forum/massdotdevelopers)
 
-## Currently deployed via heroku here:
+---
 
-[MBTA Schedule App](https://crw-mbta-schedule.herokuapp.com/)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
 
 ## Available Scripts
 
