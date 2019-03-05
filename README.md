@@ -7,7 +7,7 @@
 
 #### Be sure to set your API KEY [(gotten here)](https://api-v3.mbta.com/portal)
 
-Used in the code [here](/src/components/DeparturesTable.jsx#L17)
+Used in the code [here](/src/components/DeparturesTable.jsx#L21)
 
 ---
 
@@ -31,13 +31,13 @@ A web application that shows live Commuter Rail departure board:
 
 ## Notes/comments on assumptions made in code (they link to relevant portion of code):
 
-[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L178-L179)
+[Expect the destination to be the first value in the array](/src/components/DeparturesTable.jsx#L197-L198)
 
-[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L197-L198)
+[We should not add to the board when we receive a new event that has status of 'Departed'](/src/components/DeparturesTable.jsx#L220-L221)
 
-[We're using defaults specific to the requirements but have set up use for props](/src/components/DeparturesTable.jsx#L42-L44)
+[We're using defaults specific to the requirements but have set up use for props](/src/components/DeparturesTable.jsx#L46-L48)
 
-[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L211-L217)
+[If we have a prediction with a "Cancelled" status it's departure time is null and is at the start of the array and there top of the board](/src/components/DeparturesTable.jsx#L234-L240)
 
 [Since this is the MBTA we always know the timezone!](/src/utils/formatTime.js#L9-L10)
 
