@@ -175,6 +175,8 @@ class DeparturesTable extends React.Component {
         });
       }
     }).catch(error => {
+      // Not putting in place any retry mechanism yet - since during add and update events
+      // we use this function to fetch if needed
       console.error('Problem while fetching station name: ', error.message);
     });
   }
@@ -206,6 +208,8 @@ class DeparturesTable extends React.Component {
         });
       }
     }).catch(error => {
+      // Not putting in place any retry mechanism yet - since during add and update events
+      // we use this function to fetch if needed
       console.error('Problem while fetching route destination: ', error.message);
     });
   }
