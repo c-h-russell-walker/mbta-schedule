@@ -2,6 +2,10 @@ import React from 'react';
 
 import ScheduleRow from './ScheduleRow.jsx';
 
+import {
+  handleErrors,
+} from '../utils/fetchUtils.js';
+
 
 class DeparturesTable extends React.Component {
   constructor(props) {
@@ -150,7 +154,11 @@ class DeparturesTable extends React.Component {
   }
 
   _getAndStoreStationName(stationId) {
-    fetch(`${this.baseUrl}stops/${stationId}`).then(resp => {
+    fetch(
+      `${this.baseUrl}stops/${stationId}`
+    ).then(
+      handleErrors
+    ).then(resp => {
       return resp.json();
     }).then(jsonData => {
       let callSetState = false;
@@ -166,12 +174,21 @@ class DeparturesTable extends React.Component {
           stationIdsToNames: stationIdsToNamesCopy,
         });
       }
+    }).catch(error => {
+      console.error('Problem while fetching station name: ', error.message);
     });
   }
 
   _getAndStoreRouteDestination(routeId) {
-    fetch(`${this.baseUrl}routes/${routeId}`).then(resp => {
-      return resp.json();
+    fetch(
+      `${this.baseUrl}routes/${routeId}`
+    ).then(
+      handleErrors
+    ).then(resp => {
+      if(resp.ok) {
+        return resp.json();
+      }
+      throw new Error(resp);
     }).then(jsonData => {
       let callSetState = false;
       const routeData = jsonData.data;
@@ -188,6 +205,8 @@ class DeparturesTable extends React.Component {
           routeDestinations: routeDestinationsCopy,
         });
       }
+    }).catch(error => {
+      console.error('Problem while fetching route destination: ', error.message);
     });
   }
 
