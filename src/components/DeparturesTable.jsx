@@ -43,7 +43,7 @@ class DeparturesTable extends React.Component {
   }
 
   _setupEventSource() {
-    // The values below are set up with defaults that came from poject requirements
+    // The values below are set up with defaults that came from project requirements
     // However they've been set up so the values can be passed in to props to the
     // DeparturesTable component
 
