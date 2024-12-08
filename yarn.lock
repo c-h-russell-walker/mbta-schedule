@@ -3460,7 +3460,7 @@ fs.realpath@^1.0.0:
 
 fsevents@1.2.4:
   version "1.2.4"
-  resolved "https://registry.drift.npme.io/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
   dependencies:
     nan "^2.9.2"
     node-pre-gyp "^0.10.0"
@@ -5068,7 +5068,7 @@ loglevel@^1.4.1:
 
 loose-envify@^1.0.0, loose-envify@^1.1.0:
   version "1.4.0"
-  resolved "https://registry.drift.npme.io/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
@@ -6778,7 +6778,7 @@ react-app-polyfill@^0.2.1:
 
 react-dev-utils@^7.0.3:
   version "7.0.3"
-  resolved "https://registry.drift.npme.io/react-dev-utils/-/react-dev-utils-7.0.3.tgz#f1316cfffd792fd41b0c28ad5db86c1d74484d6f"
+  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.3.tgz#f1316cfffd792fd41b0c28ad5db86c1d74484d6f"
   dependencies:
     "@babel/code-frame" "7.0.0"
     address "1.0.3"
@@ -6807,7 +6807,7 @@ react-dev-utils@^7.0.3:
 
 react-dom@^16.8.3:
   version "16.8.3"
-  resolved "https://registry.drift.npme.io/react-dom/-/react-dom-16.8.3.tgz#ae236029e66210783ac81999d3015dfc475b9c32"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.3.tgz#ae236029e66210783ac81999d3015dfc475b9c32"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -6824,7 +6824,7 @@ react-is@^16.8.1:
 
 react-scripts@2.1.5:
   version "2.1.5"
-  resolved "https://registry.drift.npme.io/react-scripts/-/react-scripts-2.1.5.tgz#0740507db0a06d518c231caa1ef4e908bd8ebce5"
+  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.5.tgz#0740507db0a06d518c231caa1ef4e908bd8ebce5"
   dependencies:
     "@babel/core" "7.2.2"
     "@svgr/webpack" "4.1.0"
@@ -6878,7 +6878,7 @@ react-scripts@2.1.5:
 
 react@^16.8.3:
   version "16.8.3"
-  resolved "https://registry.drift.npme.io/react/-/react-16.8.3.tgz#c6f988a2ce895375de216edcfaedd6b9a76451d9"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.3.tgz#c6f988a2ce895375de216edcfaedd6b9a76451d9"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -7279,7 +7279,7 @@ sax@^1.2.4, sax@~1.2.4:
 
 scheduler@^0.13.3:
   version "0.13.3"
-  resolved "https://registry.drift.npme.io/scheduler/-/scheduler-0.13.3.tgz#bed3c5850f62ea9c716a4d781f9daeb9b2a58896"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.3.tgz#bed3c5850f62ea9c716a4d781f9daeb9b2a58896"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
